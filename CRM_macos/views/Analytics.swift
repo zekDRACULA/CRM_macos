@@ -28,7 +28,40 @@ struct ERGGraphs : View {
 }
 
 //MARK: SAR graph via joined bar graph
+struct SARGraph : View {
+    var body: some View {
+        Chart{
+                    ForEach(SARData) { data in
+                            BarMark(
+                                x: .value("Year", data.year),
+                                y: .value("Car Revenue", data.carRevenue)
+                            )
+                            .foregroundStyle(.blue)
+                            .lineStyle(StrokeStyle(lineWidth: 2))
+                        }
+                        
+                        
+                        ForEach(SARData) { data in
+                            BarMark(
+                                x: .value("Year", data.year),
+                                y: .value("Bike Revenue", data.bikeRevenue)
+                            )
+                            .foregroundStyle(.green)
+                            .lineStyle(StrokeStyle(lineWidth: 2))
+                        }
+                        
 
+                        ForEach(SARData) { data in
+                            BarMark(
+                                x: .value("Year", data.year),
+                                y: .value("Watch Revenue", data.watchRevenue)
+                            )
+                            .foregroundStyle(.orange)
+                            .lineStyle(StrokeStyle(lineWidth: 2))
+                        } 
+        }
+    }
+}
 
 //MARK: Graph holder card
 struct GraphCard : View {
@@ -42,6 +75,6 @@ struct GraphCard : View {
 }
 
 #Preview {
-    Analytics()
+    SARGraph()
 //        .frame(width: NSScreen.main?.frame.width, height: NSScreen.main?.frame.height)
 }
