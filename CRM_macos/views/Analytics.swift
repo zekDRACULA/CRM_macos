@@ -15,12 +15,34 @@ struct Analytics: View {
         VStack{
             HStack{
                 Spacer()
+                LegendView()
+                Spacer()
                 ERGGraphs()
                 Spacer()
                 RMSGraph()
                 Spacer()
             }
             SARGraph()
+        }
+    }
+}
+
+//MARK: Legend view
+struct LegendView : View {
+    var body: some View {
+        VStack(alignment: .leading){
+            ForEach(LegendsData){ data in
+                HStack{
+                    Rectangle()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(data.color)
+                        .padding(.trailing)
+                    Text(data.product)
+                        .font(.system(size: 14))
+                        .foregroundColor(.white)
+                        
+                }
+            }
         }
     }
 }
@@ -38,6 +60,7 @@ struct ERGGraphs : View {
                     BarMark(x: .value("year", data.year),
                             y: .value("Revenue", data.revenue))
                     .foregroundStyle(.mint)
+                    
                 }
             }
         }
@@ -166,31 +189,6 @@ struct PieChart: View {
 }
 
 
-//MARK: Graph holder card
-struct GraphCard : View {
-    let columns : [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    let title : String
-    
-    var body: some View {
-        RoundedRectangle.rect(cornerRadius: 25)
-            .fill(Color.white)
-            .frame(width: (((NSScreen.main?.frame.width ?? 0) - 200) / 2),
-                   height:400)
-            .overlay(
-                ZStack{
-                    VStack{
-                        Text(title)
-                            .font(.system(size: 14))
-                            .frame(width: .infinity, height: .infinity, alignment: .topLeading)
-                        
-                    }
-                }
-            )
-    }
-}
 
 #Preview {
     Analytics()

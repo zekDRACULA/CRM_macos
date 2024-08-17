@@ -77,8 +77,22 @@ struct RMS : Identifiable{
 }
 
 //MARK: data for Region market share
-let RMSData : RMS = RMS(carShare: 41, bikeShare: 32, watchShare: 270)
+let RMSData : RMS = RMS(carShare: 41, bikeShare: 32, watchShare: 27)
 
+//MARK: Ledends
+struct GraphsLegends : Identifiable {
+    
+    var id = UUID()
+    var product : String
+    var color : Color
+}
 
+//MARK: data for Legends
+let LegendsData : [GraphsLegends] = [
+    GraphsLegends(product: "Cars", color: .blue),
+    GraphsLegends(product: "Bikes", color:.green),
+    GraphsLegends(product: "Watches", color: .orange),
+    GraphsLegends(product: "Default", color: .mint),
+]
 
 
