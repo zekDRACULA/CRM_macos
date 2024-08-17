@@ -12,7 +12,7 @@ struct Dashboard: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    let dashboardOptions = ["Open Tasks", "Leads", "Closing This Month"]
+    let dashboardOptions = ["Leads", "Open Tasks", "Appointments"]
 
     var body: some View {
         Showcard(columns: columns, dashboardOptions: dashboardOptions)

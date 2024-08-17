@@ -193,6 +193,9 @@ struct showSideBarOptionList: View {
 // MARK: Card for showing  dashboard cards
 struct Showcard: View {
     
+    @ObservedObject var view = LeadView()
+    @State var shouldPresentLeadForm = false
+    
     let columns : [GridItem]
     let dashboardOptions : [String]
     
@@ -217,24 +220,64 @@ struct Showcard: View {
                                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                                             .padding()
                                             .foregroundColor(.white)
-                                        VStack(spacing: -10) {
-                                            Image(systemName: "plus")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(maxWidth: 40, maxHeight: 40)
-                                                .padding()
-                                                .foregroundColor(.white)
-                                            Text("Create New")
-                                                .font(.system(size: 14))
-                                                .foregroundColor(.white)
+                                        
+                                        
+                                        Button {
+                                            
+                                            
+                                            switch dashboardOption {
+                                            case "Leads" :
+                                                print("pressed leads")
+                                                shouldPresentLeadForm.toggle()
+                                                
+                                            case "Open Tasks" :
+                                                print("pressed Open Tasks")
+                                                
+                                            case "Appointments" :
+                                                print("pressed Appointments")
+                                                
+                                            default :
+                                                print("Nothing")
+                                            }
+                                        } label: {
+                                            .sheet($shouldPresentLeadForm){
+                                                print("pop up")
+                                            }content:{
+                                                LeadFormView()
+                                            }
+                                            if(view.leadsList.count > 0){
+                                                showLeadList()
+                                            }else{
+                                                addOption()
+                                            }
+                                            
                                         }
-                                    }
+                                        .buttonStyle(PlainButtonStyle())
+                                        }
                                 )
                         }
                     }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+}
+
+//Mark: struct to show add option
+
+struct addOption : View {
+    var body: some View {
+        VStack(spacing: -10) {
+            Image(systemName: "plus")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(maxWidth: 40, maxHeight: 40)
+                .padding()
+                .foregroundColor(.white)
+            Text("Create New")
+                .font(.system(size: 14))
+                .foregroundColor(.white)
         }
     }
 }

@@ -18,8 +18,6 @@ struct ContentView: View {
             //MARK: side bar here
             showSideBarOptionList(sideBarOptions: sideBarOptions, selectedItem: $selectedItem)
                 
-            
-            
         } detail: {
             //MARK: details here
             
@@ -32,7 +30,8 @@ struct ContentView: View {
                     Analytics()
                         .navigationTitle(selectedItem)
                 case "Appointments" :
-                    AppointmentView()
+                    //AppointmentView()
+                    showLeadList()
                         .navigationTitle(selectedItem)
                 case "Lead Details" :
                     LeadDetailView()

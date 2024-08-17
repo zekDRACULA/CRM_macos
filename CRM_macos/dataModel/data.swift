@@ -8,6 +8,17 @@
 import Foundation
 import SwiftUI
 
+//MARK: struct for Leads
+struct Lead : Identifiable{
+    var id = UUID()
+    var name : String
+    var leadSource : String
+    var company : String
+    var phoneNumber : String
+    var email : String
+}
+
+
 //MARK: struct for expected revenue growth
 //MARK: ERG = ExpectedRevenueGrowth
 struct ERG : Identifiable{
