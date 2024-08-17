@@ -56,14 +56,14 @@ struct SAR : Identifiable{
 }
 
 //MARK: data for Sales Across Regions
-let SARData : [SAR] = [
-    SAR(year: "2018", carRevenue: 450, bikeRevenue: 350, watchRevenue: 200),
-    SAR(year: "2019", carRevenue: 470, bikeRevenue: 320, watchRevenue: 210),
-    SAR(year: "2020", carRevenue: 380, bikeRevenue: 300, watchRevenue: 320),
-    SAR(year: "2021", carRevenue: 450, bikeRevenue: 350, watchRevenue: 300),
-    SAR(year: "2022", carRevenue: 445, bikeRevenue: 340, watchRevenue: 250),
-    SAR(year: "2013", carRevenue: 460, bikeRevenue: 320, watchRevenue: 270),
-    SAR(year: "2014", carRevenue: 410, bikeRevenue: 320, watchRevenue: 270),
+let SARData: [SAR] = [
+    SAR(year: "2018", carRevenue: 464, bikeRevenue: 290, watchRevenue: 213),
+    SAR(year: "2019", carRevenue: 424, bikeRevenue: 282, watchRevenue: 169),
+    SAR(year: "2020", carRevenue: 445, bikeRevenue: 280, watchRevenue: 302),
+    SAR(year: "2021", carRevenue: 498, bikeRevenue: 358, watchRevenue: 291),
+    SAR(year: "2022", carRevenue: 368, bikeRevenue: 300, watchRevenue: 200),
+    SAR(year: "2023", carRevenue: 379, bikeRevenue: 302, watchRevenue: 253),
+    SAR(year: "2024", carRevenue: 316, bikeRevenue: 344, watchRevenue: 319),
 ]
 
 
