@@ -8,9 +8,17 @@
 import SwiftUI
 import Charts
 
+
+
 struct Analytics: View {
     var body: some View {
-        ERGGraphs()
+        VStack{
+            HStack{
+                ERGGraphs()
+                RMS
+            }
+            SARGraph()
+        }
     }
 }
 
@@ -63,6 +71,30 @@ struct SARGraph : View {
     }
 }
 
+//MARK: RMS graph via pie chart
+struct RMSGraph : View {
+    var startAngle: Angle
+    var endAngle: Angle
+    var color: Color
+    
+    var body: some View {
+        GeometryReader { geometry in
+            let size = min(geometry.size.width, geometry.size.height)
+            let path = Path { path in
+                path.move(to: CGPoint(x: size / 2, y: size / 2))
+                path.addArc(
+                    center: CGPoint(x: size / 2, y: size / 2),
+                    radius: size / 2,
+                    startAngle: startAngle,
+                    endAngle: endAngle,
+                    clockwise: false
+                )
+            }
+            path.fill(self.color)
+        }
+    }
+}
+
 //MARK: Graph holder card
 struct GraphCard : View {
     let columns : [GridItem] = [
@@ -75,6 +107,6 @@ struct GraphCard : View {
 }
 
 #Preview {
-    SARGraph()
+    Analytics()
 //        .frame(width: NSScreen.main?.frame.width, height: NSScreen.main?.frame.height)
 }
