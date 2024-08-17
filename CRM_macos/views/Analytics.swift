@@ -14,8 +14,11 @@ struct Analytics: View {
     var body: some View {
         VStack{
             HStack{
+                Spacer()
                 ERGGraphs()
-                RMS
+                Spacer()
+                RMSGraph()
+                Spacer()
             }
             SARGraph()
         }
@@ -25,10 +28,17 @@ struct Analytics: View {
 //MARK: graph for expected Revenue Growth via bar Graph
 struct ERGGraphs : View {
     var body: some View {
-        Chart{
-            ForEach(ERGData){ data in
-                BarMark(x: .value("year", data.year),
-                        y: .value("Revenue", data.revenue))
+        VStack{
+            Text("Expected Revenue Growth")
+                .font(.system(size: 14))
+                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
+                .foregroundColor(.white)
+            Chart{
+                ForEach(ERGData){ data in
+                    BarMark(x: .value("year", data.year),
+                            y: .value("Revenue", data.revenue))
+                    .foregroundStyle(.mint)
+                }
             }
         }
         .frame(maxWidth: 600, maxHeight: 400)
@@ -38,41 +48,63 @@ struct ERGGraphs : View {
 //MARK: SAR graph via joined bar graph
 struct SARGraph : View {
     var body: some View {
-        Chart{
-                    ForEach(SARData) { data in
-                            BarMark(
-                                x: .value("Year", data.year),
-                                y: .value("Car Revenue", data.carRevenue)
-                            )
-                            .foregroundStyle(.blue)
-                            .lineStyle(StrokeStyle(lineWidth: 2))
-                        }
-                        
-                        
+        VStack {
+            Text("Revenue Across Products")
+                .font(.system(size: 14))
+                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
+                .foregroundColor(.white)
+            Chart{
                         ForEach(SARData) { data in
-                            BarMark(
-                                x: .value("Year", data.year),
-                                y: .value("Bike Revenue", data.bikeRevenue)
-                            )
-                            .foregroundStyle(.green)
-                            .lineStyle(StrokeStyle(lineWidth: 2))
-                        }
-                        
+                                BarMark(
+                                    x: .value("Year", data.year),
+                                    y: .value("Car Revenue", data.carRevenue)
+                                )
+                                .foregroundStyle(.blue)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                            }
+                            
+                            
+                            ForEach(SARData) { data in
+                                BarMark(
+                                    x: .value("Year", data.year),
+                                    y: .value("Bike Revenue", data.bikeRevenue)
+                                )
+                                .foregroundStyle(.green)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                            }
+                            
 
-                        ForEach(SARData) { data in
-                            BarMark(
-                                x: .value("Year", data.year),
-                                y: .value("Watch Revenue", data.watchRevenue)
-                            )
-                            .foregroundStyle(.orange)
-                            .lineStyle(StrokeStyle(lineWidth: 2))
-                        } 
+                            ForEach(SARData) { data in
+                                BarMark(
+                                    x: .value("Year", data.year),
+                                    y: .value("Watch Revenue", data.watchRevenue)
+                                )
+                                .foregroundStyle(.orange)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                            } 
+            }
         }
     }
 }
 
 //MARK: RMS graph via pie chart
 struct RMSGraph : View {
+   
+    var body: some View {
+        
+        VStack{
+            Text("Proudct Market Share")
+                .font(.system(size: 14))
+                .frame(width: .infinity, height: .infinity, alignment: .topLeading)
+                .foregroundColor(.white)
+                
+            PieChart(data: RMSData)
+        }
+    }
+}
+
+//MARK: making PieChart
+struct PieSliceView: View {
     var startAngle: Angle
     var endAngle: Angle
     var color: Color
@@ -95,18 +127,71 @@ struct RMSGraph : View {
     }
 }
 
+// MARK: - PieChartView
+struct PieChart: View {
+    var data: RMS
+    
+    // MARK: - Flatten Data and Calculate Angles
+    private func calculateAngles() -> [Angle] {
+        let total = data.carShare + data.bikeShare + data.watchShare
+        let shares = [data.carShare, data.bikeShare, data.watchShare]
+        var angles: [Angle] = []
+        var currentAngle: Double = -90
+        
+        for share in shares {
+            let angle = Double(share / total * 360)
+            angles.append(.degrees(currentAngle))
+            currentAngle += angle
+        }
+        angles.append(.degrees(currentAngle))
+        
+        return angles
+    }
+    
+    var body: some View {
+        let angles = calculateAngles()
+        let colors: [Color] = [.blue, .green, .orange]
+        
+        return ZStack {
+            ForEach(0..<3, id: \.self) { index in
+                PieSliceView(
+                    startAngle: angles[index],
+                    endAngle: angles[index + 1],
+                    color: colors[index]
+                )
+            }
+        }
+        .frame(width: 200, height: 200)
+    }
+}
+
+
 //MARK: Graph holder card
 struct GraphCard : View {
     let columns : [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    let title : String
+    
     var body: some View {
-        Text("Hele")
+        RoundedRectangle.rect(cornerRadius: 25)
+            .fill(Color.white)
+            .frame(width: (((NSScreen.main?.frame.width ?? 0) - 200) / 2),
+                   height:400)
+            .overlay(
+                ZStack{
+                    VStack{
+                        Text(title)
+                            .font(.system(size: 14))
+                            .frame(width: .infinity, height: .infinity, alignment: .topLeading)
+                        
+                    }
+                }
+            )
     }
 }
 
 #Preview {
     Analytics()
-//        .frame(width: NSScreen.main?.frame.width, height: NSScreen.main?.frame.height)
 }

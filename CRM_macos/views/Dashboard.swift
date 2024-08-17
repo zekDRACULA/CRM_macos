@@ -42,41 +42,57 @@ struct Showcard: View {
     
     var body: some View {
         HStack(alignment: .center) {
-                    ScrollView{
-                        LazyVGrid(columns: columns, alignment: .center) {
-                            ForEach(dashboardOptions, id: \.self){ dashboardOption in
-                                RoundedRectangle(cornerRadius: 25)
-                                    .fill(Color.white)
-                                    .frame(width: (((NSScreen.main?.frame.width ?? 0) - 200) / 2),
-                                           height:400)
-                                    .overlay(
-                                        ZStack{
-                                            Text(dashboardOption)
-                                                .font(.system(size: 14, weight: .medium))
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            ScrollView {
+                LazyVGrid(columns: columns, alignment: .center) {
+                    ForEach(dashboardOptions, id: \.self) { dashboardOption in
+                        ZStack {
+                            // Glassmorphism effect
+                            RoundedRectangle(cornerRadius: 25)
+                                .fill(Color.white.opacity(0.1))
+                                .background(BlurView())
+                                .background(RoundedRectangle(cornerRadius: 25).stroke(Color.white.opacity(0.3), lineWidth: 1))
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                                .frame(width: (((NSScreen.main?.frame.width ?? 0) - 200) / 2),
+                                       height: 400)
+                                .overlay(
+                                    ZStack {
+                                        Text(dashboardOption)
+                                            .font(.system(size: 14, weight: .medium))
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                                            .padding()
+                                            .foregroundColor(.white)
+                                        VStack(spacing: -10) {
+                                            Image(systemName: "plus")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(maxWidth: 40, maxHeight: 40)
                                                 .padding()
-                                                .foregroundColor(.black)
-                                            VStack(spacing: -10){
-                                                Image(systemName: "plus")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(maxWidth: 40, maxHeight: 40)
-                                                    .padding()
-                                                    .foregroundColor(.black)
-                                                Text("Create New")
-                                                    .font(.system(size: 14))
-                                                    .foregroundColor(.black)
-                                            }
-                                            
+                                                .foregroundColor(.white)
+                                            Text("Create New")
+                                                .font(.system(size: 14))
+                                                .foregroundColor(.white)
                                         }
-                                    )
-                            }
+                                    }
+                                )
                         }
-                        
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
+}
+
+struct BlurView: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.material = .hudWindow // Use .light, .dark, or .ultraDark for different effects
+        view.blendingMode = .withinWindow
+        view.state = .active
+        return view
+    }
+
+    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {}
 }
 
 #Preview {

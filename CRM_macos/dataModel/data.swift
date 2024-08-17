@@ -77,9 +77,7 @@ struct RMS : Identifiable{
 }
 
 //MARK: data for Region market share
-let RMSData : [RMS] = [
-    RMS(carShare: 41, bikeShare: 32, watchShare: 270)
-]
+let RMSData : RMS = RMS(carShare: 41, bikeShare: 32, watchShare: 270)
 
 
 
