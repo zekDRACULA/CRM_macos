@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1181DB22C71450600FE1D4C /* AppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DB12C71450600FE1D4C /* AppointmentView.swift */; };
+		B1181DB42C71455500FE1D4C /* LeadDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DB32C71455500FE1D4C /* LeadDetailView.swift */; };
 		B130CFD02C70EAC800DBED9D /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFCF2C70EAC800DBED9D /* Analytics.swift */; };
 		B130CFD22C70EDED00DBED9D /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD12C70EDED00DBED9D /* data.swift */; };
-		B130CFD42C70F09900DBED9D /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD32C70F09900DBED9D /* Graphs.swift */; };
+		B130CFD42C70F09900DBED9D /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD32C70F09900DBED9D /* GraphView.swift */; };
 		B130CFD72C713C3700DBED9D /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD62C713C3700DBED9D /* viewModel.swift */; };
 		B1754BB72C70A1E300C55501 /* CRM_macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1754BB62C70A1E300C55501 /* CRM_macosApp.swift */; };
 		B1754BB92C70A1E300C55501 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1754BB82C70A1E300C55501 /* ContentView.swift */; };
@@ -19,9 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B1181DB12C71450600FE1D4C /* AppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentView.swift; sourceTree = "<group>"; };
+		B1181DB32C71455500FE1D4C /* LeadDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailView.swift; sourceTree = "<group>"; };
 		B130CFCF2C70EAC800DBED9D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B130CFD12C70EDED00DBED9D /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
-		B130CFD32C70F09900DBED9D /* Graphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphs.swift; sourceTree = "<group>"; };
+		B130CFD32C70F09900DBED9D /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		B130CFD62C713C3700DBED9D /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		B1754BB32C70A1E300C55501 /* CRM_macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRM_macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1754BB62C70A1E300C55501 /* CRM_macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRM_macosApp.swift; sourceTree = "<group>"; };
@@ -95,7 +99,9 @@
 			children = (
 				B1754BC82C70A74700C55501 /* Dashboard.swift */,
 				B130CFCF2C70EAC800DBED9D /* Analytics.swift */,
-				B130CFD32C70F09900DBED9D /* Graphs.swift */,
+				B130CFD32C70F09900DBED9D /* GraphView.swift */,
+				B1181DB12C71450600FE1D4C /* AppointmentView.swift */,
+				B1181DB32C71455500FE1D4C /* LeadDetailView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -178,11 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B130CFD42C70F09900DBED9D /* Graphs.swift in Sources */,
+				B130CFD42C70F09900DBED9D /* GraphView.swift in Sources */,
 				B1754BB92C70A1E300C55501 /* ContentView.swift in Sources */,
+				B1181DB22C71450600FE1D4C /* AppointmentView.swift in Sources */,
 				B1754BC92C70A74700C55501 /* Dashboard.swift in Sources */,
 				B130CFD02C70EAC800DBED9D /* Analytics.swift in Sources */,
 				B130CFD22C70EDED00DBED9D /* data.swift in Sources */,
+				B1181DB42C71455500FE1D4C /* LeadDetailView.swift in Sources */,
 				B130CFD72C713C3700DBED9D /* viewModel.swift in Sources */,
 				B1754BB72C70A1E300C55501 /* CRM_macosApp.swift in Sources */,
 			);

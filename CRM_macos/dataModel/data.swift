@@ -8,20 +8,6 @@
 import Foundation
 import SwiftUI
 
-
-//MARK: struct to story views
-//struct AnalyticsViewList : Identifiable{
-//    
-//    var id = UUID()
-//    var view: AnyView
-//}
-
-//MARK: data for AnalyticsViewList
-//let analyticsViewList : [AnalyticsViewList] = [
-//    AnalyticsViewList(view: ERGGraphs),
-//    AnalyticsViewList(view: SARGraph)
-//]
-
 //MARK: struct for expected revenue growth
 //MARK: ERG = ExpectedRevenueGrowth
 struct ERG : Identifiable{

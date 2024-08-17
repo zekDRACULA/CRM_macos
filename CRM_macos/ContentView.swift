@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let sideBarOptions = ["Dashboard", "Analytics", "Add Lead", "Lead Details"]
+    let sideBarOptions = ["Dashboard", "Analytics", "Appointments", "Lead Details"]
     let dashboardOptions = ["Open Tasks", "Leads", "Closing This Month"]
     @State private var selectedItem : String? = "DashBoard"
     var body: some View {
@@ -30,6 +30,12 @@ struct ContentView: View {
                         .navigationTitle(selectedItem)
                 case "Analytics" :
                     Analytics()
+                        .navigationTitle(selectedItem)
+                case "Appointments" :
+                    AppointmentView()
+                        .navigationTitle(selectedItem)
+                case "Lead Details" :
+                    LeadDetailView()
                         .navigationTitle(selectedItem)
                 default:
                     Dashboard()
