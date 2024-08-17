@@ -10,6 +10,7 @@
 		B130CFD02C70EAC800DBED9D /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFCF2C70EAC800DBED9D /* Analytics.swift */; };
 		B130CFD22C70EDED00DBED9D /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD12C70EDED00DBED9D /* data.swift */; };
 		B130CFD42C70F09900DBED9D /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD32C70F09900DBED9D /* Graphs.swift */; };
+		B130CFD72C713C3700DBED9D /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD62C713C3700DBED9D /* viewModel.swift */; };
 		B1754BB72C70A1E300C55501 /* CRM_macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1754BB62C70A1E300C55501 /* CRM_macosApp.swift */; };
 		B1754BB92C70A1E300C55501 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1754BB82C70A1E300C55501 /* ContentView.swift */; };
 		B1754BBB2C70A1E400C55501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1754BBA2C70A1E400C55501 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		B130CFCF2C70EAC800DBED9D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B130CFD12C70EDED00DBED9D /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		B130CFD32C70F09900DBED9D /* Graphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphs.swift; sourceTree = "<group>"; };
+		B130CFD62C713C3700DBED9D /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		B1754BB32C70A1E300C55501 /* CRM_macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRM_macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1754BB62C70A1E300C55501 /* CRM_macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRM_macosApp.swift; sourceTree = "<group>"; };
 		B1754BB82C70A1E300C55501 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B130CFD52C713BFC00DBED9D /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B130CFD62C713C3700DBED9D /* viewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		B1754BAA2C70A1E300C55501 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		B1754BB52C70A1E300C55501 /* CRM_macos */ = {
 			isa = PBXGroup;
 			children = (
+				B130CFD52C713BFC00DBED9D /* viewModel */,
 				B1754BC72C70A71100C55501 /* dataModel */,
 				B1754BC52C70A6CA00C55501 /* views */,
 				B1754BB62C70A1E300C55501 /* CRM_macosApp.swift */,
@@ -172,6 +183,7 @@
 				B1754BC92C70A74700C55501 /* Dashboard.swift in Sources */,
 				B130CFD02C70EAC800DBED9D /* Analytics.swift in Sources */,
 				B130CFD22C70EDED00DBED9D /* data.swift in Sources */,
+				B130CFD72C713C3700DBED9D /* viewModel.swift in Sources */,
 				B1754BB72C70A1E300C55501 /* CRM_macosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
