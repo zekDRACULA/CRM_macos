@@ -9,62 +9,75 @@ import SwiftUI
 
 struct LeadDetailView: View {
     @ObservedObject var view = LeadView.shared
+    
     var body: some View {
-        List(view.leadsList) { lead in
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Name:")
-                        .font(.headline)
-                        
-                    Text(lead.name)
-                        .font(.body)
-                        
-                }
-                
-                HStack {
-                    Text("Company:")
-                        .font(.headline)
-                        
-                    Text(lead.company)
-                        .font(.body)
-                        
-                }
-                
-                HStack {
-                    Text("Lead Source:")
-                        .font(.headline)
-                        
-                    Text(lead.leadSource)
-                        .font(.body)
-                        
-                }
-                
-                
-                
-                HStack {
+        if(view.leadsList.isEmpty){
+            Text("No Leads")
+        } else{
+            List(view.leadsList){ lead in
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text("Email:")
+                        Text("Name:")
                             .font(.headline)
-                            
-                        Text(lead.email)
+                            .foregroundColor(.white)
+                        Text(lead.name)
                             .font(.body)
-                            
+                            .foregroundColor(.white)
                     }
-                    .padding(.trailing)
-                    Text("Phone Number:")
-                        .font(.headline)
-                        
-                    Text(lead.phoneNumber)
-                        .font(.body)
-                        
+                    
+                    HStack {
+                        Text("Company:")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Text(lead.company)
+                            .font(.body)
+                            .foregroundColor(.white)
+                    }
+                    
+                    HStack {
+                        Text("Lead Source:")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Text(lead.leadSource)
+                            .font(.body)
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                        HStack {
+                            Text("Email:")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                            Text(lead.email)
+                                .font(.body)
+                                .foregroundColor(.white)
+                        }
+                    
+                    HStack{
+                        Text("Phone Number:")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Text(lead.phoneNumber)
+                            .font(.body)
+                            .foregroundColor(.white)
+                    }
+                    
                 }
+                .padding()
+                .frame(width: (NSScreen.main?.frame.width ?? 0) - 100, alignment: .leading)
+                .background(
+                    ZStack {
+                        // Glassmorphism effect
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white.opacity(0.1))  // Semi-transparent background
+                            .background(BlurView())  // Blur effect
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                    }
+                )
             }
-            .padding()
-            .background(Color.clear)
-            .cornerRadius(10)
-            .shadow(radius: 5)
+
         }
-        .listStyle(PlainListStyle()) // Optional: Adjust list style
     }
 }
 
