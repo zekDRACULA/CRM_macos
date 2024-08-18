@@ -104,28 +104,28 @@ struct AppointmentFormView: View {
     @ObservedObject var view = AppointmentsView.shared  // Use singleton instance
     var body: some View {
         NavigationStack {
-            Form {
-                VStack {
-                    Text("Add Appointment")
-                        .font(.system(size: 14, weight: .bold))
-                    TextField("Name", text: $view.name)
-                        .frame(height: 40)
-                    TextField("Company", text: $view.company)
-                        .frame(height: 40)
-                    TextField("Message", text: $view.message)
-                        .frame(height: 40)
+        VStack{
+                Text("Add Appointment")
+                    .font(.system(size: 14, weight: .bold))
+                Form{
+                        TextField("Name", text: $view.name)
+                        .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
+                        TextField("Company", text: $view.company)
+                        .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
+                        TextField("Message", text: $view.message)
+                        .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
                 }
-                .padding()
+                .frame(width: (NSScreen.main?.frame.width ?? 0) / 2,
+                       height: (NSScreen.main?.frame.height ?? 0) / 4)
+                .background(BlurView())
+                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                
+                Button(action: {
+                    view.addAppointment()
+                }, label: {
+                    Text("Add")
+                })
             }
-            .frame(width: 600, height: .infinity)
-            
-            Button(action: {
-                view.addAppointment()
-            }, label: {
-                Text("Add")
-            })
-            .padding(.leading)
-            .padding(.bottom)
         }
     }
 }
@@ -135,7 +135,7 @@ struct AppointmentFormView: View {
 
 // MARK: Preview
 #Preview {
-    Apointment()
+    AppointmentFormView()
         .frame(width: NSScreen.main?.frame.width,
                height: NSScreen.main?.frame.height)
 }

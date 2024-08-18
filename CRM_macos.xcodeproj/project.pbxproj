@@ -10,6 +10,8 @@
 		B1181DB22C71450600FE1D4C /* AppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DB12C71450600FE1D4C /* AppointmentView.swift */; };
 		B1181DB42C71455500FE1D4C /* LeadDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DB32C71455500FE1D4C /* LeadDetailView.swift */; };
 		B1181DB62C71B9F100FE1D4C /* Apointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DB52C71B9F100FE1D4C /* Apointment.swift */; };
+		B1181DBC2C72045F00FE1D4C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DBB2C72045F00FE1D4C /* LoginView.swift */; };
+		B1181DBE2C7210A400FE1D4C /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1181DBD2C7210A400FE1D4C /* RegisterView.swift */; };
 		B130CFD02C70EAC800DBED9D /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFCF2C70EAC800DBED9D /* Analytics.swift */; };
 		B130CFD22C70EDED00DBED9D /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD12C70EDED00DBED9D /* data.swift */; };
 		B130CFD42C70F09900DBED9D /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CFD32C70F09900DBED9D /* GraphView.swift */; };
@@ -25,6 +27,8 @@
 		B1181DB12C71450600FE1D4C /* AppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentView.swift; sourceTree = "<group>"; };
 		B1181DB32C71455500FE1D4C /* LeadDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailView.swift; sourceTree = "<group>"; };
 		B1181DB52C71B9F100FE1D4C /* Apointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apointment.swift; sourceTree = "<group>"; };
+		B1181DBB2C72045F00FE1D4C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B1181DBD2C7210A400FE1D4C /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B130CFCF2C70EAC800DBED9D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B130CFD12C70EDED00DBED9D /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		B130CFD32C70F09900DBED9D /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				B1181DB12C71450600FE1D4C /* AppointmentView.swift */,
 				B1181DB32C71455500FE1D4C /* LeadDetailView.swift */,
 				B1181DB52C71B9F100FE1D4C /* Apointment.swift */,
+				B1181DBB2C72045F00FE1D4C /* LoginView.swift */,
+				B1181DBD2C7210A400FE1D4C /* RegisterView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -195,6 +201,8 @@
 				B130CFD02C70EAC800DBED9D /* Analytics.swift in Sources */,
 				B130CFD22C70EDED00DBED9D /* data.swift in Sources */,
 				B1181DB42C71455500FE1D4C /* LeadDetailView.swift in Sources */,
+				B1181DBC2C72045F00FE1D4C /* LoginView.swift in Sources */,
+				B1181DBE2C7210A400FE1D4C /* RegisterView.swift in Sources */,
 				B130CFD72C713C3700DBED9D /* viewModel.swift in Sources */,
 				B1754BB72C70A1E300C55501 /* CRM_macosApp.swift in Sources */,
 			);
