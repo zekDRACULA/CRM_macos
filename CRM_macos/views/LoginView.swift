@@ -23,10 +23,12 @@ struct User : Identifiable{
 class UserCredentialForm : ObservableObject{
     static let shared = UserCredentialForm()
     
+    @Published var isAuthenticated : Bool = false
     @Published var email : String = ""
     @Published var password : String = ""
     
     @Published var userList : [User] = []
+    
     private init(){}
     
     func addUser(){
@@ -36,12 +38,17 @@ class UserCredentialForm : ObservableObject{
         password = ""
     }
     
-    func matchCredentials(){
-        let user = User(email: email, password: password)
-//        if let _ = 
-            
+    func matchCredentiails(){
+        
+        for user in userList{
+            if user.email == email && user.password == password{
+                isAuthenticated = true
+            }else{
+                isAuthenticated = false
+            }
         }
     }
+    
 }
 
 struct LoginFormView : View {
@@ -58,7 +65,7 @@ struct LoginFormView : View {
                         .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
                     HStack{
                         Button(action: {
-                            //Data Action regarding Login
+                            view.matchCredentiails()
                         }, label: {
                             Text("Login")
                         })
@@ -74,6 +81,11 @@ struct LoginFormView : View {
                        height: (NSScreen.main?.frame.height ?? 0) / 2)
                 .background(BlurView())
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                
+               // NavigationLink("", destination : Dashboard(), isActive: $view.isAuthenticated)
+                .navigationDestination(isPresented: $view.isAuthenticated) {
+                    Dashboard()
+                }
                 
             }
         }
