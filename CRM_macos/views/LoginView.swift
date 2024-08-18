@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LogInView: View {
+struct LoginView: View {
     var body: some View {
         LoginFormView()
     }
@@ -35,44 +35,54 @@ class UserCredentialForm : ObservableObject{
         email = ""
         password = ""
     }
+    
+    func matchCredentials(){
+        let user = User(email: email, password: password)
+//        if let _ = 
+            
+        }
+    }
 }
 
 struct LoginFormView : View {
     @ObservedObject var view = UserCredentialForm.shared
     var body: some View {
-        VStack{
-            Text("Login")
-                .font(.system(size: 17, weight: .bold))
-            Form{
-                TextField("Email", text: $view.email)
-                    .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
-                TextField("Password", text: $view.password)
-                    .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
-                HStack{
-                    Button(action: {
-                        //Data Action regarding Login
-                    }, label: {
-                        Text("Login")
-                    })
-                    Button(action: {
-                        RegisterView()
-                    }, label: {
-                        Text("Register")
-                    })
+        NavigationStack {
+            VStack{
+                Text("Login")
+                    .font(.system(size: 17, weight: .bold))
+                Form{
+                    TextField("Email", text: $view.email)
+                        .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
+                    TextField("Password", text: $view.password)
+                        .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
+                    HStack{
+                        Button(action: {
+                            //Data Action regarding Login
+                        }, label: {
+                            Text("Login")
+                        })
+                        NavigationLink {
+                            RegisterView()
+                        } label: {
+                            Text("Register")
+                        }
+
+                    }
                 }
+                .frame(width: (NSScreen.main?.frame.width ?? 0) / 2,
+                       height: (NSScreen.main?.frame.height ?? 0) / 2)
+                .background(BlurView())
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                
             }
-            .frame(width: (NSScreen.main?.frame.width ?? 0) / 2,
-                   height: (NSScreen.main?.frame.height ?? 0) / 2)
-            .background(BlurView())
-            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-            
         }
         
     }
 }
 
 #Preview {
-    LogInView()
+    LoginView()
         .frame(width: NSScreen.main?.frame.width,
                height: NSScreen.main?.frame.height)
 }

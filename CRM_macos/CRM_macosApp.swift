@@ -11,7 +11,7 @@ import SwiftUI
 struct CRM_macosApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
         }
         
     }
