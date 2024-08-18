@@ -55,7 +55,9 @@ struct LoginFormView : View {
     @ObservedObject var view = UserCredentialForm.shared
     var body: some View {
         if(view.isAuthenticated){
-            Dashboard()
+            
+            ContentView()
+            
         }else {
             NavigationStack {
                 VStack{
