@@ -193,7 +193,7 @@ struct showSideBarOptionList: View {
 // MARK: Card for showing  dashboard cards
 struct Showcard: View {
     
-    @ObservedObject var view = LeadView()
+    @ObservedObject var view = LeadView.shared
     @State var shouldPresentLeadForm = false
     @State var shouldPresentAppointmentForm = false
     

@@ -31,7 +31,7 @@ struct ContentView: View {
                         .navigationTitle(selectedItem)
                 case "Appointments" :
                     //AppointmentView()
-                    showLeadList()
+                    Apointment()
                         .navigationTitle(selectedItem)
                 case "Lead Details" :
                     LeadDetailView()

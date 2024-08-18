@@ -8,14 +8,98 @@
 import SwiftUI
 
 struct LeadDetailView: View {
+    @ObservedObject var view = LeadView.shared
     var body: some View {
-        LeadFormView()
+        List(view.leadsList) { lead in
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Name:")
+                        .font(.headline)
+                        
+                    Text(lead.name)
+                        .font(.body)
+                        
+                }
+                
+                HStack {
+                    Text("Company:")
+                        .font(.headline)
+                        
+                    Text(lead.company)
+                        .font(.body)
+                        
+                }
+                
+                HStack {
+                    Text("Lead Source:")
+                        .font(.headline)
+                        
+                    Text(lead.leadSource)
+                        .font(.body)
+                        
+                }
+                
+                
+                
+                HStack {
+                    HStack {
+                        Text("Email:")
+                            .font(.headline)
+                            
+                        Text(lead.email)
+                            .font(.body)
+                            
+                    }
+                    .padding(.trailing)
+                    Text("Phone Number:")
+                        .font(.headline)
+                        
+                    Text(lead.phoneNumber)
+                        .font(.body)
+                        
+                }
+            }
+            .padding()
+            .background(Color.clear)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+        }
+        .listStyle(PlainListStyle()) // Optional: Adjust list style
+    }
+}
+
+// MARK: LeadView Class
+class LeadView: ObservableObject {
+    static let shared = LeadView()
+    
+    @Published var name: String = ""
+    @Published var leadSource: String = ""
+    @Published var company: String = ""
+    @Published var phoneNumber: String = ""
+    @Published var email: String = ""
+    
+    @Published var leadsList: [Lead] = []
+    
+    private init(){}
+    
+    func addLead() {
+        let newLead = Lead(name: name,
+                           leadSource: leadSource,
+                           company: company,
+                           phoneNumber: phoneNumber,
+                           email: email)
+        leadsList.append(newLead)
+        name = ""
+        leadSource = ""
+        company = ""
+        phoneNumber = ""
+        email = ""
     }
 }
 
 
 struct LeadFormView: View {
-    @ObservedObject var view = LeadView()  //Observing LeadView for changes so it can append new values
+    @ObservedObject var view = LeadView.shared //Observing LeadView for changes so it can append new values
     var body: some View {
         NavigationStack{
             Form{
@@ -49,20 +133,7 @@ struct LeadFormView: View {
     }
 }
 
-//MARK: output LeadList
-struct showLeadList : View {
-    @ObservedObject var view = LeadView()
-    var body: some View {
-        ZStack{
-            ForEach(view.leadsList){lead in
-                VStack{
-                    Text("\(view.name)")
-                        .foregroundStyle(Color.white)
-                }
-            }
-        }
-    }
-}
+
 
 
 #Preview {

@@ -7,68 +7,86 @@
 
 import SwiftUI
 
-//MARK: Appointment Struct
 struct Apointment: View {
+    @ObservedObject var view = AppointmentsView.shared
     var body: some View {
-        AppointmentForm()
+        
+        if view.appointmentList.isEmpty {
+            Text("No Appointments")
+        } else {
+            List(view.appointmentList) { appointment in 
+                VStack(alignment: .leading) {
+                    Text(appointment.name)
+                        
+                    Text(appointment.company)
+                        
+                    Text(appointment.message)
+                        
+                }
+                .padding()
+            }
+        }
     }
 }
 
-//MARK: Appointments Struct
-struct Appointments{
-    var name : String
-    var company : String
-    var message : String
+// MARK: Appointments Struct
+struct Appointments: Identifiable {
+    var id = UUID()
+    var name: String
+    var company: String
+    var message: String
 }
 
-class AppointmentsView : ObservableObject{
-    @Published var name : String = ""
-    @Published var company : String = ""
-    @Published var message : String = ""
+
+// MARK: AppointmentsView Singleton
+class AppointmentsView: ObservableObject {
+    static let shared = AppointmentsView()  // Singleton instance
     
-    @Published var appointmnetList : [Appointments] = []
-    func addAppointment(){
-        let newAppointment = Appointments( name : name,
-                                           company: company,
-                                           message: message)
-        appointmnetList.append(newAppointment)
+    @Published var name: String = ""
+    @Published var company: String = ""
+    @Published var message: String = ""
+    
+    @Published var appointmentList: [Appointments] = []
+    
+    private init() {}  // Private initializer to prevent outside instantiation
+    
+    func addAppointment() {
+        let newAppointment = Appointments(name: name,
+                                          company: company,
+                                          message: message)
+        appointmentList.append(newAppointment)
         name = ""
         company = ""
         message = ""
     }
-    
-    func getAppointMent(){
-        print(appointmnetList.count)
-    }
 }
 
-//MARK: Appointment fORM
-struct AppointmentForm : View {
-    @ObservedObject var view = AppointmentsView()
+// MARK: Appointment Form
+struct AppointmentForm: View {
+    @ObservedObject var view = AppointmentsView.shared  // Use singleton instance
     var body: some View {
-        NavigationStack{
-            Form{
-                VStack{
+        NavigationStack {
+            Form {
+                VStack {
                     Text("Add Appointment")
                         .font(.system(size: 14, weight: .bold))
                     TextField("Name", text: $view.name)
-                        .frame(height:40)
-                    TextField("lead Source", text: $view.company)
-                        .frame(height:40)
-                    TextField("Compnay", text: $view.message)
-                        .frame(height:40)
+                        .frame(height: 40)
+                    TextField("Company", text: $view.company)
+                        .frame(height: 40)
+                    TextField("Message", text: $view.message)
+                        .frame(height: 40)
                 }
                 .padding()
             }
-            .frame(width: 600,height: .infinity)
+            .frame(width: 600, height: .infinity)
             
-                Button(action: {
-                    view.addAppointment()
-                }, label: {
-                    Text("Add")
-                })
-                .padding(.leading)
-            
+            Button(action: {
+                view.addAppointment()
+            }, label: {
+                Text("Add")
+            })
+            .padding(.leading)
             .padding(.bottom)
         }
     }
@@ -76,33 +94,8 @@ struct AppointmentForm : View {
 
 
 
-//MARK:  LeadView Class
-class LeadView: ObservableObject {
-    @Published var name : String = ""
-    @Published var leadSource : String = ""
-    @Published var company : String = ""
-    @Published var phoneNumber : String = ""
-    @Published var email : String = ""
-    
-    @Published var leadsList: [Lead] = []
-    
-    func addLead(){
-        
-        let newLead = Lead(name: name,
-                           leadSource: leadSource,
-                           company: company,
-                           phoneNumber: phoneNumber,
-                           email: email)
-        leadsList.append(newLead)
-        name = ""
-        leadSource = ""
-        company = ""
-        phoneNumber = ""
-        email = ""
-        
-    }
-}
 
+// MARK: Preview
 #Preview {
     Apointment()
         .frame(width: NSScreen.main?.frame.width,
