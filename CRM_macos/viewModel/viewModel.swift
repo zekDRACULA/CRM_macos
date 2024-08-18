@@ -248,7 +248,7 @@ struct Showcard: View {
                 LeadFormView()
             }
             .sheet(isPresented: $shouldPresentAppointmentForm) {
-                AppointmentForm()
+                AppointmentFormView()
             }
         }
     }

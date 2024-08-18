@@ -100,7 +100,7 @@ class AppointmentsView: ObservableObject {
 }
 
 // MARK: Appointment Form
-struct AppointmentForm: View {
+struct AppointmentFormView: View {
     @ObservedObject var view = AppointmentsView.shared  // Use singleton instance
     var body: some View {
         NavigationStack {
