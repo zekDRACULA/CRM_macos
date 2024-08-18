@@ -13,27 +13,6 @@ struct LeadDetailView: View {
     }
 }
 
-class LeadView: ObservableObject {
-    @Published var name : String = ""
-    @Published var leadSource : String = ""
-    @Published var company : String = ""
-    @Published var phoneNumber : String = ""
-    @Published var email : String = ""
-    
-    @Published var leadsList: [Lead] = []
-    
-    func addLead(){
-        
-        let newLead = Lead(name: name,
-                           leadSource: leadSource,
-                           company: company,
-                           phoneNumber: phoneNumber,
-                           email: email)
-        leadsList.append(newLead)
-    }
-}
-
-
 
 struct LeadFormView: View {
     @ObservedObject var view = LeadView()  //Observing LeadView for changes so it can append new values
@@ -41,20 +20,31 @@ struct LeadFormView: View {
         NavigationStack{
             Form{
                 VStack{
+                    Text("Add Lead")
+                        .font(.system(size: 14, weight: .bold))
                     TextField("Name", text: $view.name)
+                        .frame(height:40)
                     TextField("lead Source", text: $view.leadSource)
+                        .frame(height:40)
                     TextField("Compnay", text: $view.company)
+                        .frame(height:40)
                     HStack{
                         TextField("Phone Number", text: $view.phoneNumber)
+                            .frame(height:50)
                         TextField("Email", text: $view.email)
+                            .frame(height:50)
                     }
                 }
+                .padding()
             }
+            .frame(width: 600,height: .infinity)
+            
             Button(action: {
                 view.addLead()
             }, label: {
                 Text("Add")
             })
+            .padding(.bottom)
         }
     }
 }
@@ -76,5 +66,7 @@ struct showLeadList : View {
 
 
 #Preview {
-    showLeadList()
+    LeadFormView()
+        .frame(width: NSScreen.main?.frame.width,
+               height: NSScreen.main?.frame.height)
 }

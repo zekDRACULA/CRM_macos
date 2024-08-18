@@ -195,93 +195,101 @@ struct Showcard: View {
     
     @ObservedObject var view = LeadView()
     @State var shouldPresentLeadForm = false
+    @State var shouldPresentAppointmentForm = false
     
-    let columns : [GridItem]
-    let dashboardOptions : [String]
+    let columns: [GridItem]
+    let dashboardOptions: [String]
     
     var body: some View {
         HStack(alignment: .center) {
             ScrollView {
                 LazyVGrid(columns: columns, alignment: .center) {
                     ForEach(dashboardOptions, id: \.self) { dashboardOption in
-                        ZStack {
-                            // Glassmorphism effect
-                            RoundedRectangle(cornerRadius: 25)
-                                .fill(Color.white.opacity(0.1))
-                                .background(BlurView())
-                                .background(RoundedRectangle(cornerRadius: 25).stroke(Color.white.opacity(0.3), lineWidth: 1))
-                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-                                .frame(width: (((NSScreen.main?.frame.width ?? 0) - 200) / 2),
-                                       height: 400)
-                                .overlay(
-                                    ZStack {
-                                        Text(dashboardOption)
-                                            .font(.system(size: 14, weight: .medium))
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                                            .padding()
-                                            .foregroundColor(.white)
-                                        
-                                        
-                                        Button {
-                                            
-                                            
-                                            switch dashboardOption {
-                                            case "Leads" :
-                                                print("pressed leads")
-                                                shouldPresentLeadForm.toggle()
-                                                
-                                            case "Open Tasks" :
-                                                print("pressed Open Tasks")
-                                                
-                                            case "Appointments" :
-                                                print("pressed Appointments")
-                                                
-                                            default :
-                                                print("Nothing")
-                                            }
-                                        } label: {
-                                            .sheet($shouldPresentLeadForm){
-                                                print("pop up")
-                                            }content:{
-                                                LeadFormView()
-                                            }
-                                            if(view.leadsList.count > 0){
-                                                showLeadList()
-                                            }else{
-                                                addOption()
-                                            }
-                                            
-                                        }
-                                        .buttonStyle(PlainButtonStyle())
-                                        }
-                                )
-                        }
+                        dashboardCard(for: dashboardOption)
                     }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
-}
-
-//Mark: struct to show add option
-
-struct addOption : View {
-    var body: some View {
-        VStack(spacing: -10) {
-            Image(systemName: "plus")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(maxWidth: 40, maxHeight: 40)
+    
+    private func dashboardCard(for dashboardOption: String) -> some View {
+        ZStack {
+            // Glassmorphism effect
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color.white.opacity(0.1))
+                .background(BlurView())
+                .background(
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                )
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                .frame(width: (((NSScreen.main?.frame.width ?? 0) - 200) / 2), height: 400)
+                .overlay(contentOverlay(for: dashboardOption))
+        }
+    }
+    
+    private func contentOverlay(for dashboardOption: String) -> some View {
+        ZStack {
+            Text(dashboardOption)
+                .font(.system(size: 14, weight: .medium))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .padding()
                 .foregroundColor(.white)
-            Text("Create New")
-                .font(.system(size: 14))
-                .foregroundColor(.white)
+            
+            Button {
+                handleButtonPress(for: dashboardOption)
+            } label: {
+                addOption()
+                    .background(Color.clear)
+            }
+            .buttonStyle(PlainButtonStyle())
+            .sheet(isPresented: $shouldPresentLeadForm) {
+                LeadFormView()
+            }
+            .sheet(isPresented: $shouldPresentAppointmentForm) {
+                AppointmentForm()
+            }
+        }
+    }
+    
+    private func handleButtonPress(for dashboardOption: String) {
+        switch dashboardOption {
+        case "Leads":
+            print("pressed leads")
+            shouldPresentLeadForm.toggle()
+            
+        case "Open Tasks":
+            print("pressed Open Tasks")
+            
+        case "Appointments":
+            print("pressed Appointments")
+            shouldPresentAppointmentForm.toggle()
+            
+        default:
+            print("Nothing")
         }
     }
 }
+//MARK: struct to show add option
+        
+        struct addOption : View {
+            var body: some View {
+                VStack(spacing: -10) {
+                    Image(systemName: "plus")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: 40, maxHeight: 40)
+                        .padding()
+                        .foregroundColor(.white)
+                    Text("Create New")
+                        .font(.system(size: 14))
+                        .foregroundColor(.white)
+                }
+            }
+        }
 
+//MARK: for Blur
 struct BlurView: NSViewRepresentable {
     func makeNSView(context: Context) -> NSVisualEffectView {
         let view = NSVisualEffectView()
@@ -292,4 +300,3 @@ struct BlurView: NSViewRepresentable {
     }
     func updateNSView(_ nsView: NSVisualEffectView, context: Context) {}
 }
-    
