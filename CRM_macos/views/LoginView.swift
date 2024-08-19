@@ -66,7 +66,7 @@ struct LoginFormView : View {
                     Form{
                         TextField("Email", text: $view.email)
                             .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
-                        TextField("Password", text: $view.password)
+                        SecureField("Password", text: $view.password)
                             .frame(width: (NSScreen.main?.frame.width ?? 0)/3 ,height: 40)
                         HStack{
                             Button(action: {
